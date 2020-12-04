@@ -142,10 +142,10 @@ firebase.auth().onAuthStateChanged((user) => {
                     document.getElementById('vidDl').href = vdu;
                     document.getElementById('videoSection').style.display = 'block';
                 }
-                if (imu != null || adu != null || vdu != null) {
+                if (imu != null || adu != null || vdu != null) { //If user has uploaded any file then the UI should display it/them
                     document.getElementById('viewUploads').style.display = 'block';
                 }
-                if (imu != null && adu != null && vdu != null) {
+                if (imu != null && adu != null && vdu != null) { //If user has uploaded all 3 files, no more uploads are allowed
                     document.getElementById('filesTable').style.display = 'none';
                 }
             } else {
@@ -162,6 +162,10 @@ firebase.auth().onAuthStateChanged((user) => {
     }
 });
 
+//refresh the page to update upload status
+function refreshPage() {
+    window.location.reload();
+}
 //logging a user out of the system
 function logMeOut() {
     window.alert("Confirm That You Want To Logout");
