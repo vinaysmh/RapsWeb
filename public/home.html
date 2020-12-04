@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Welcome To Your Dashboard</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            background-color: navajowhite;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Welcome to your Dashboard </a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a data-toggle="modal" data-target="#myModal" href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+                <li><button class="btn btn-danger navbar-btn" onclick="logMeOut()"><span class="glyphicon glyphicon-log-out"></span> Logout</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Your Details</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-striped table-bordered table-hover">
+                            <tr>
+                                <td>Name: </td>
+                                <td id="name"></td>
+                            </tr>
+                            <tr>
+                                <td>Email: </td>
+                                <td id="email"></td>
+                            </tr>
+                            <tr>
+                                <td>DOB: </td>
+                                <td id="dob"></td>
+                            </tr>
+                            <tr>
+                                <td>UID: </td>
+                                <td id="uid"></td>
+                            </tr>
+                            <tr>
+                                <td>Member Since: </td>
+                                <td id="regDate"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="filesTable" style="display: block;">
+            <h2 align="center">Use the table below to upload files of your choice</h2>
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>File Type</th>
+                            <th>Select</th>
+                            <th>Upload Status</th>
+                            <th>Saved</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Audio</td>
+                            <td><input type="file" id="audio" accept=".mp3,.aac" /></td>
+                            <td id="a1"></td>
+                            <td><span id="a2" class="glyphicon glyphicon-remove" style="display: block;"></span>
+                                <span id="a3" class="glyphicon glyphicon-ok" style="display: none; color:green;"></span></td>
+                        </tr>
+                        <tr>
+                            <td>Video</td>
+                            <td><input type="file" id="video" accept=".mp4,.mkv"></td>
+                            <td id="v1"></td>
+                            <td><span id="v2" class="glyphicon glyphicon-remove" style="display: block;"></span>
+                                <span id="v3" class="glyphicon glyphicon-ok" style="display: none;color:green;"></span></td>
+                        </tr>
+                        <tr>
+                            <td>Image</td>
+                            <td>
+                                <input type="file" id="image" accept=".jpg,.jpeg,.png"></td>
+                            <td id="i1"></td>
+                            <td><span id="i2" class="glyphicon glyphicon-remove " style="display: block; "></span>
+                                <span id="i3" class="glyphicon glyphicon-ok " style="display: none; color: green; "></span></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <p>* As soon as you select a file it will start to upload itself and its link will be saved corresponding your records in our database, so please wait until all the <u>red crosses</u> <span class="glyphicon glyphicon-remove "></span> turn into
+                <u>green ticks</u>
+                <span class="glyphicon glyphicon-ok " style=" color: green; "></span>
+            </p>
+        </div>
+
+        <div class="row" style="display: none;" id="viewUploads">
+            <h2 align="center">Files Uploaded by You</h2>
+            <div id="audioSection" style="display: none;" class="col-sm-4">
+                <p>Audio Uploaded by You</p><br>
+                <audio id="audUp" controls>
+                <source  src="" type="audio/mpeg ">
+              Your browser does not support the audio element.
+              </audio><br>
+                <a id="audDl" href="" download="audio.mp3"><button class="btn btn-success navbar-btn"><span class="glyphicon glyphicon-download"></span>Download This Audio</button></a>
+            </div>
+
+            <div id="videoSection" style="display: none;" class="col-sm-4">
+                <p>Video Uploaded by You</p><br>
+                <video id="vidUp" width="320 " height="240 " controls>
+                <source  src="" type="video/mp4 ">
+              Your browser does not support the video tag.
+              </video><br>
+                <a id="vidDl" href="" download="video.mp4"><button class="btn btn-success navbar-btn"><span class="glyphicon glyphicon-download"></span>Download This Video</button></a>
+
+            </div>
+            <div id="imageSection" style="display: none;" class="col-sm-4">
+                <p>Image Uploaded by You</p><br>
+                <img id="imgUp" src="" alt="yourUploadedImage" height="240" width="320"><br>
+                <a id="imgDl" href="" download="image.png"><button class="btn btn-success navbar-btn"><span class="glyphicon glyphicon-download"></span>Download This Image</button></a>
+            </div>
+        </div>
+    </div>
+    <hr width="75%" style="color: green;">
+    <p align="center">Developed by <a href="mailto:vinaysmh@gmail.com">Vinay Saurabh</a> For Raps-iTech</p>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js "></script>
+    <!-- SDKs for Firebase products -->
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js "></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js "></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-firestore.js "></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-storage.js "></script>
+    <script src="js/logged.js "></script>
+</body>
+
+</html>
