@@ -22,6 +22,7 @@
                 <a class="navbar-brand" href="#">Welcome to your Dashboard </a>
             </div>
             <ul class="nav navbar-nav navbar-right">
+                <li><a onclick="homeBtn()" href="#"><span class="glyphicon glyphicon-arrow-left"></span> Homepage</a></li>
                 <li><a data-toggle="modal" data-target="#myModal" href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
                 <li><button class="btn btn-danger navbar-btn" onclick="logMeOut()"><span class="glyphicon glyphicon-log-out"></span> Logout</button></li>
             </ul>
@@ -147,8 +148,14 @@
     <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js "></script>
     <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js "></script>
     <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-firestore.js "></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-storage.js "></script>
     <script src="js/logged.js "></script>
+    <script>
+        function homeBtn() {
+            window.location.replace('index.html');
+        }
+    </script>
 </body>
 
 </html>

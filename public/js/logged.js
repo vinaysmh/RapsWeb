@@ -14,6 +14,8 @@ firebase.initializeApp(firebaseConfig);
 //Initialize Firebase Analytics SDK
 firebase.analytics();
 
+//reference to firebase's realtime database
+var rtdb = firebase.database();
 //reference a firestore collection - users collection where all users' data is saved
 var db = firebase.firestore().collection('users');
 //reference to the firebase's storage service
@@ -42,11 +44,16 @@ af.addEventListener('change', function(e) {
     }, function complete() {
         // Upload completed successfully, now we can get the download URL
         task.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-            firebase.firestore().collection('users').doc(id).update({
+            //save into user's space
+            db.doc(id).update({
                 audio: downloadURL
             }).then(function() { //Called on completion of saving process
                 document.getElementById('a3').style.display = 'block';
                 document.getElementById('a2').style.display = 'none';
+            });
+            //save into common space
+            rtdb.ref('audio').push().set({
+                file: downloadURL
             });
         });
     });
@@ -69,11 +76,16 @@ vf.addEventListener('change', function(e) {
     }, function complete() {
         // Upload completed successfully, now we can get the download URL
         task.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-            firebase.firestore().collection('users').doc(id).update({
+            //save into user's space
+            db.doc(id).update({
                 video: downloadURL
             }).then(function() { //Called on completion of saving process
                 document.getElementById('v3').style.display = 'block';
                 document.getElementById('v2').style.display = 'none';
+            });
+            //save into common space
+            rtdb.ref('video').push().set({
+                file: downloadURL
             });
         });
     });
@@ -96,11 +108,16 @@ imgf.addEventListener('change', function(e) {
     }, function complete() {
         // Upload completed successfully, now we can get the download URL
         task.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-            firebase.firestore().collection('users').doc(id).update({
+            //save into user's space
+            db.doc(id).update({
                 image: downloadURL
             }).then(function() { //Called on completion of url saving process
                 document.getElementById('i3').style.display = 'block';
                 document.getElementById('i2').style.display = 'none';
+            });
+            //save into common space
+            rtdb.ref('image').push().set({
+                file: downloadURL
             });
         });
     });
@@ -158,7 +175,7 @@ firebase.auth().onAuthStateChanged((user) => {
     } else {
         // User is signed out
         console.log("You have been logged out ");
-        window.location.replace('../');
+        window.location.replace('index.html');
     }
 });
 
@@ -171,5 +188,5 @@ function logMeOut() {
     window.alert("Confirm That You Want To Logout");
     firebase.auth().signOut()
         .then(() => console.log('User Signed Out'));
-    window.location.replace('../');
+    window.location.replace('index.html');
 }

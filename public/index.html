@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>File Management with Auth</title>
+    <title>Raps CDN</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -11,112 +11,50 @@
     <style>
         body {
             background-color: navajowhite;
-            height: 100%;
+        }
+        
+        .dwn {
+            display: none;
         }
     </style>
 </head>
 
 <body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">View contents uploaded by all users </a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li id="dashBtn" style="display: none;"><button class="btn btn-primary navbar-btn" onclick="dashPage()"><span class="glyphicon glyphicon-home"></span> Your Dashboard</button></li>
+                <li id="logBtn" style="display: block;"><button class="btn btn-primary navbar-btn" onclick="logInPage()"><span class="glyphicon glyphicon-log-in"></span> Register / Login to Download</button></li>
+            </ul>
+        </div>
+    </nav>
     <div class="container">
-        <!-- Login Form Division -->
-        <div id="log" class="log" style="display: block;">
-
-            <h2>Existing User ?</h2>
-            <h3>Login Below</h3>
-            <form id="login">
-
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="pwd">Password:</label>
-                    <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" required>
-                </div>
-
-                <button onclick="login()" class="btn btn-success">  Login  </button>&nbsp;&nbsp;&nbsp;&nbsp;Forgot Password ?
-                <a onclick="showRes()">Reset Here</a>
-
-            </form><br>
-            <button onclick="showReg()" class="btn btn-info">New User ? Register Here</button>
-
-        </div>
-
-        <!-- Registration Form Division -->
-        <div id="reg" class="reg" style="display: none;">
-            <h2>New User ?</h2>
-            <h3>Register Below</h3>
-            <form id="register">
-
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" class="form-control" id="email1" placeholder="Enter email" name="email" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="pwd">Password:</label>
-                    <input type="password" class="form-control" id="pwd1" placeholder="Enter password" name="pwd" required>
-                </div>
-                <div class="form-group">
-                    <label for="name">Full Name:</label>
-                    <input type="text" class="form-control" id="name" placeholder="Enter Your Full Name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="dob">Date Of Birth:</label>
-                    <input type="date" class="form-control" id="dob" placeholder="Select Your Date of Birth" name="dob" required>
-                </div>
-                <button onclick="register()" class="btn btn-primary">  Register  </button>&nbsp;&nbsp;&nbsp;&nbsp; Existing User ?
-                <a onclick="showLog()">Login Here</a>
-
-            </form>
-        </div>
-        <!-- Password Reset Form Division -->
-        <div id="psr" class="psr" style="display: none;">
-            <h2>Forgot Password ?</h2>
-            <h3>Reset Below</h3>
-            <form id="resett">
-
-                <div class="form-group">
-                    <label for="email">Registered Email:</label>
-                    <input type="email" class="form-control" id="email2" placeholder="Enter email" name="email" required>
-                </div>
-
-                <button onclick="resett()" class="btn btn-danger">  Reset  </button>&nbsp;&nbsp;&nbsp;&nbsp; Remembered ?
-                <a onclick="showLog()">Login Here</a>
-
-            </form>
-        </div>
-
+        <button class="dwn">1</button>
+        <button class="dwn">2</button>
+        <button class="dwn">3</button>
+        <button class="dwn">4</button>
     </div>
+    <hr width="75%" style="color: green;">
+    <p align="center">Developed by <a href="mailto:vinaysmh@gmail.com">Vinay Saurabh</a> For Raps-iTech</p>
     <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
-
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js "></script>
     <!-- SDKs for Firebase products -->
-    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-firestore.js"></script>
-    <script src="js/auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js "></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js "></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-database.js"></script>
+    <script src="js/view.js"></script>
     <script>
-        function showReg() {
-            document.querySelector('.reg').style.display = 'block';
-            document.querySelector('.log').style.display = 'none';
-            document.querySelector('.psr').style.display = 'none';
+        function logInPage() {
+            window.location.replace('auth.html');
         }
 
-        function showLog() {
-            document.querySelector('.log').style.display = 'block';
-            document.querySelector('.reg').style.display = 'none';
-            document.querySelector('.psr').style.display = 'none';
-        }
-
-        function showRes() {
-            document.querySelector('.psr').style.display = 'block';
-            document.querySelector('.log').style.display = 'none';
-            document.querySelector('.reg').style.display = 'none';
+        function dashPage() {
+            window.location.replace('home.html');
         }
     </script>
-
 </body>
 
 </html>

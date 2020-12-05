@@ -36,7 +36,7 @@ function login() {
     fireAuth.signInWithEmailAndPassword(emm, pss)
         .then((user) => {
             // Successfully Signed in and the firebase's auth-state-change listener updates UI accordingly
-            window.location.replace('home.html');
+            window.location.replace('index.html');
         })
         .catch((error) => {
             //Errors in authentication are handled here
@@ -105,7 +105,7 @@ function resett() {
         window.alert("Request Accepted Successfully" + '\n' +
             "Instruction had been sent to your requested email address" + '\n' +
             "Click OK to proceed to login page");
-        window.location.replace('../');
+        window.location.replace('auth.html');
     }).catch(function(error) {
         //Some error occured, handle below
         console.log(error.code + '\n' + error.message);
@@ -118,6 +118,7 @@ fireAuth.onAuthStateChanged((user) => {
     if (user) {
         // User is authenticated now
         console.log("signed in");
+
     } else {
         // User is not authenticated yet
         console.log("You are not logged in, please login to proceed ahead");
