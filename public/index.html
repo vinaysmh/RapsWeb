@@ -32,10 +32,75 @@
         </div>
     </nav>
     <div class="container">
-        <button class="dwn">1</button>
-        <button class="dwn">2</button>
-        <button class="dwn">3</button>
-        <button class="dwn">4</button>
+        <div class="row">
+            <div class="col-sm-4">
+                <table id="imgList" class="imgList">
+                    <thead>
+                        <th>Images Section</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <img src="samples/image.png" alt="viewSampleImage" height="240" width="320"><br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center">
+                                <a href="samples/image.png" download="image.png">
+                                    <button class="btn btn-success dwn">Download</button></td>
+                            </a>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-4">
+                <table id="audList" class="audList">
+                    <thead>
+                        <th>Audio Section</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><audio controls>
+                                <source  src="samples/audio.mp3" type="audio/mpeg ">
+                              Your browser does not support the audio element.
+                              </audio><br></td>
+
+                        </tr>
+                        <tr>
+                            <td align="center">
+                                <a href="samples/audio.mp3" download="audio.mp3">
+                                    <button class="btn btn-success dwn">Download</button></td>
+                            </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-4">
+                <table id="vidList" class="vidList">
+                    <thead>
+                        <th>Video Section</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><video width="320 " height="240 " controls>
+                                <source  src="samples/video.mp4" type="video/mp4 ">
+                              Your browser does not support the video element.
+                                </video><br></td>
+
+                        </tr>
+                        <tr>
+                            <td align="center">
+                                <a href="samples/video.mp4" download="video.mp4">
+                                    <button class="btn btn-success dwn">Download</button></td>
+                            </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
     </div>
     <hr width="75%" style="color: green;">
     <p align="center">Developed by <a href="mailto:vinaysmh@gmail.com">Vinay Saurabh</a> For Raps-iTech</p>

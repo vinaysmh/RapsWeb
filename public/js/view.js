@@ -23,12 +23,13 @@ var audRef = firebase.database().ref('audio/');
 var vidRef = firebase.database().ref('video/');
 //this function checks user's auth status to enable/disable downloading
 fireAuth.onAuthStateChanged((user) => {
+    updateViewPage();
     if (user) {
         // User is authenticated now
         console.log("signed in" + user.uid);
         document.getElementById('logBtn').style.display = 'none';
         document.getElementById('dashBtn').style.display = 'block';
-        updateViewPage(user);
+
     } else {
         // User is not authenticated yet
         console.log("You are not logged in, please login to proceed ahead");
@@ -38,35 +39,40 @@ fireAuth.onAuthStateChanged((user) => {
 });
 
 //this function gets data from common space and updates the UI
-function updateViewPage(user) {
-    if (user == null) {
+function updateViewPage() {
+
+    // //fetch data from firebase rtdb
+    // imgRef.once('value', (snapshot) => { //Images' section
+    //     snapshot.forEach((childSnapshot) => {
+    //         var childKey = childSnapshot.key;
+    //         var childData = childSnapshot.val();
+    //         console.log(childData.file);
+    //         //renderImagesUI(childData);
+    //     });
+    // });
+    // audRef.once('value', (snapshot) => { //Audios' section
+    //     snapshot.forEach((childSnapshot) => {
+    //         var childKey = childSnapshot.key;
+    //         var childData = childSnapshot.val();
+    //         console.log(childData.file);
+    //         //renderAudioUI(childData);
+    //     });
+    // });
+    // vidRef.once('value', (snapshot) => { //videos' section
+    //     snapshot.forEach((childSnapshot) => {
+    //         var childKey = childSnapshot.key;
+    //         var childData = childSnapshot.val();
+    //         console.log(childData.file);
+    //         //renderVideoUI(childData);
+    //     });
+    // });
+
+    //Now check if user is authenticated or not
+    if (fireAuth.currentUser == null) {
         console.log("not logged in");
     }
-    if (user != null) {
+    if (fireAuth.currentUser != null) {
         console.log("logged in");
-        //fetch data from firebase rtdb
-        imgRef.once('value', (snapshot) => { //Images' section
-            snapshot.forEach((childSnapshot) => {
-                var childKey = childSnapshot.key;
-                var childData = childSnapshot.val();
-                console.log(childData.file);
-            });
-        });
-        audRef.once('value', (snapshot) => { //Audios' section
-            snapshot.forEach((childSnapshot) => {
-                var childKey = childSnapshot.key;
-                var childData = childSnapshot.val();
-                console.log(childData.file);
-            });
-        });
-        vidRef.once('value', (snapshot) => { //videos' section
-            snapshot.forEach((childSnapshot) => {
-                var childKey = childSnapshot.key;
-                var childData = childSnapshot.val();
-                console.log(childData.file);
-            });
-        });
-
         //now enable download buttons
         var dwnBtn = document.getElementsByClassName('dwn');
         for (var i = 0; i < dwnBtn.length; i++) {
@@ -75,3 +81,54 @@ function updateViewPage(user) {
     }
 
 }
+
+// const imageList = document.querySelector('#imgList');
+// const audioList = document.querySelector('#audList');
+// const videoList = document.querySelector('#vidList');
+
+// function renderImagesUI(doc) {
+//     let tr = document.createElement('tr');
+//     let td1 = document.createElement('td');
+//     let img1 = document.createElement('img');
+
+//     tr.setAttribute('data-id', doc.file);
+//     img1.src = doc.file;
+//     img1.sizes = "(max-width: 320px) 480px,240px"
+//     tr.appendChild(td1);
+//     tr.appendChild(img1);
+//     imageList.appendChild(tr);
+// }
+
+
+// function renderAudioUI(doc) {
+//     let tr = document.createElement('tr');
+//     let td1 = document.createElement('td');
+//     let aud1 = document.createElement('audio');
+//     let src1 = document.createElement('source');
+
+//     tr.setAttribute('data-id', doc.file);
+//     // aud1.setAttribute('src', doc.file);
+//     src1.type = "audio/mp3";
+//     src1.src = doc.file;
+//     tr.appendChild(td1);
+//     tr.appendChild(aud1);
+//     tr.appendChild(src1);
+//     audioList.appendChild(tr);
+// }
+
+// function renderVideoUI(doc) {
+//     let tr = document.createElement('tr');
+//     let td1 = document.createElement('td');
+//     let vid1 = document.createElement('video');
+//     let src1 = document.createElement('source');
+
+//     tr.setAttribute('data-id', doc.file);
+//     //vid1.setAttribute('src', doc.file);
+//     src1.type = "video/mp4";
+//     src1.src = doc.file;
+
+//     tr.appendChild(td1);
+//     tr.appendChild(vid1);
+//     tr.appendChild(src1);
+//     videoList.appendChild(tr);
+// }
